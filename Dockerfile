@@ -17,7 +17,7 @@ RUN yum -y --enablerepo=remi,remi-php56 install php php-cli php-pear php-pdo php
 RUN yum -y install epel-release; yum -y install phpmyadmin; yum -y clean all
 
 # Add Environment variable work around shell script
-ADD env.sh /root/env.sh
+COPY env.sh /root/env.sh
 
 # add phpmyadmin softlink to web directory
 RUN ln -s /usr/share/phpMyAdmin /var/www; mv /var/www/index.php /var/www/phpinfo.php; \
@@ -29,8 +29,6 @@ RUN ln -s /usr/share/phpMyAdmin /var/www; mv /var/www/index.php /var/www/phpinfo
 	= getEnv("DBNAME")?getEnv("DBNAME"):\"DB\";/g" /etc/phpMyAdmin/config.inc.php; \
 	sed -i "s/\$cfg\['Servers'\]\[\$i\]\['port'\].*/\$cfg\['Servers'\]\[\$i\]\['port'\]          \
 	= getEnv("DBPORT")?getEnv("DBPORT"):3306;/g" /etc/phpMyAdmin/config.inc.php; \
-	# Add Timezone to php.ini
-	sed -i "s/;date\.timezone.*/date\.timezone = Asia\/Taipei/g" /etc/php.ini; \
 	chmod +x /root/env.sh
 
 # Run Environmnet variable first before running supervisord
