@@ -42,4 +42,9 @@ sudo docker run -d -P --name db youraccount/dock-phpmyadmin
 #docker run -d -p 8081:80 --name web --link db10:db10 -e DBNAME=DB10 carbonsphere/dock-phpmyadmin
 #Default MySQL username/password carbon/carbon please refer to carbonsphere/dock-mysql
 
+#Example of using this container as standalone DB manager to a remote host without having a local db link container.
+#Default db link host name is "DB" --  default DBNAME=DB
+#use add-host option. EX:
+#docker run -d -p 8081:80 --name phpmyadmin --add-host DB:192.168.0.100 carbonsphere/dock-phpmyadmin
+
 </pre>
