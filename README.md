@@ -48,3 +48,4 @@ sudo docker run -d -P --name db youraccount/dock-phpmyadmin
 #docker run -d -p 8081:80 --name phpmyadmin --add-host DB:192.168.0.100 carbonsphere/dock-phpmyadmin
 
 </pre>
+![](https://goo.gl/5DKgaf)
